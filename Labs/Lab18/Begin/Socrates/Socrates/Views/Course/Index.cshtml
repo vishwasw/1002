@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Department>
+
+@{
+    ViewBag.Title = "Courses";
+}
+
+<h2>Courses</h2>
+<p>
+    @Html.ActionLink("Add New Course", "Create")
+</p>
+@foreach (var department in Model)
+{
+    <p><strong>@department.Name</strong></p>
+    foreach (var course in department.Courses.OrderByDescending(c => c.AvailabilityDate))
+    {
+        <p>@course.Number: @Html.ActionLink(course.Title, "Details", new { id = course.Id }) [ @course.Duration days ]</p>
+    }
+}
