@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Intro
 {
@@ -7,11 +8,16 @@ namespace Intro
     {
         static void Main(string[] args)
         {
-            Person emp = new Employee();
-            emp.FirstName = "Bill";
-            emp.LastName = "Gates";
+            var people = new List<Person> {
+                new Employee { FirstName = "Bill", LastName = "Gates" },
+                new Employee { FirstName = "Steve", LastName = "Jobs" }
+            };
 
-            Console.WriteLine(emp.FullName);
+            var r = people.FindAll(p => p.FirstName.StartsWith("S"));
+
+            foreach (var p in r) {
+                Console.WriteLine(p.FullName);
+            }
 
             Console.ReadKey();
         }
